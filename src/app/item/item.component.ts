@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Lambda, LambdaDetails } from '../items';
+import { Lambda, LambdaDetails, ServerlessComponent } from '../items';
 
 @Component({
   selector: 'app-item',
@@ -7,12 +7,17 @@ import { Lambda, LambdaDetails } from '../items';
   styleUrls: ['./item.component.scss']
 })
 export class ItemComponent implements OnInit {
-  @Input() item: Lambda;
+  @Input() item: ServerlessComponent;
   constructor() { }
 
   ngOnInit(): void {
   }
-  key(lambda: Lambda) {
-    return Object.keys(lambda)[0];
+  AddLambda(){
+    const lambda = new Lambda();
+    const lambdaDetails = new LambdaDetails();
+    lambdaDetails.name = '${blahblah}';
+    lambda.functionObject3 = lambdaDetails;
+    
+    this.item.lambdas.push(lambda);
   }
 }
