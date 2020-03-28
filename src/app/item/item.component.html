@@ -1,6 +1,4 @@
-<h2>Lambda</h2>
-
+<h2>{{item.name}}</h2>
 <ul>
-    <li>Message 1</li>
-    <li>Message 2</li>
+    <li *ngFor="let event of item.lambdas">{{key(event)}} - "{{event[key(event)].name}}"</li>
 </ul>

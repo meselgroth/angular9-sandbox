@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Lambda, LambdaDetails } from '../items';
 
 @Component({
   selector: 'app-item',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./item.component.scss']
 })
 export class ItemComponent implements OnInit {
-
+  @Input() item: Lambda;
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  key(lambda: Lambda) {
+    return Object.keys(lambda)[0];
+  }
 }
