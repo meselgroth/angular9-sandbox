@@ -9,10 +9,8 @@ import { ServerlessService } from '../serverless.service';
 })
 export class ItemComponent implements OnInit {
   @Input() item: ServerlessComponent;
-  private serverlessService: ServerlessService;
 
-  constructor(private sService: ServerlessService) {
-    this.serverlessService = sService;
+  constructor(private serverlessService: ServerlessService) {
   }
 
   ngOnInit(): void {

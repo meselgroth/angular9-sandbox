@@ -9,11 +9,9 @@ import { ServerlessComponent } from '../items';
 })
 export class YamlServerlessViewComponent implements OnInit {
 
-  private serverlessService: ServerlessService;
   Components: ServerlessComponent[];
 
-  constructor(private sService: ServerlessService) {
-    this.serverlessService = sService;
+  constructor(private serverlessService: ServerlessService) {
     this.Components = this.serverlessService.GetAll();
   }
   ngOnInit(): void {
