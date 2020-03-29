@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Lambda, LambdaDetails, ServerlessComponent } from '../items';
+import { ServerlessService } from '../serverless.service';
 
 @Component({
   selector: 'app-item',
@@ -8,16 +9,15 @@ import { Lambda, LambdaDetails, ServerlessComponent } from '../items';
 })
 export class ItemComponent implements OnInit {
   @Input() item: ServerlessComponent;
-  constructor() { }
+  private serverlessService: ServerlessService;
+
+  constructor(private sService: ServerlessService) {
+    this.serverlessService = sService;
+  }
 
   ngOnInit(): void {
   }
-  AddLambda(){
-    const lambda = new Lambda();
-    const lambdaDetails = new LambdaDetails();
-    lambdaDetails.name = '${blahblah}';
-    lambda.functionObject3 = lambdaDetails;
-    
-    this.item.lambdas.push(lambda);
+  AddLambda() {
+    this.serverlessService.AddLambdaToItem(this.item);
   }
 }
