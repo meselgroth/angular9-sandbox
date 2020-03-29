@@ -1,0 +1,5 @@
+<h1>Yaml View</h1>
+<div *ngFor="let item of Components">
+    <div>{{item.lambdas.length}}</div>
+    <app-item [item]=item></app-item>
+</div>

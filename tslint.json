@@ -1,6 +1,7 @@
 {
   "extends": "tslint:recommended",
   "rules": {
+    "disable-next-line": "no-trailing-whitespace",
     "align": {
       "options": [
         "parameters",
