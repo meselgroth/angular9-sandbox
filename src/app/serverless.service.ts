@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { items, ServerlessComponent, Lambda, LambdaDetails } from './items';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServerlessService {
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
   GetAll(){
-    return items;
+    return this.http.get<ServerlessComponent[]>('assets/items.json');
   }
 
   AddLambdaToItem(item: ServerlessComponent){

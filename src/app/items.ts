@@ -22,19 +22,32 @@ export const items: ServerlessComponent[] = [
     }
 ];
 
-export class ServerlessComponent {
+export interface ServerlessComponent {
     name: string;
-    lambdas: Array<Lambda>;
+    lambdas: Array<ILambda>;
 }
 
-export class Lambda {
+export interface ILambda {
     [key: string]: LambdaDetails | string | Function;
+}
 
+export class Lambda implements ILambda {
+    [key: string]: string | Function | LambdaDetails;
+
+    constructor(iLambda?: ILambda) {
+        for (const key in iLambda) {
+            if (iLambda.hasOwnProperty(key)) {
+                this[key] = iLambda[key];
+            }
+        }
+    }
     get ObjectName(): string {
         return Object.keys(this)[0];
     }
     GetObject(): LambdaDetails { return this[Object.keys(this)[0]] as LambdaDetails; }
 }
+
+
 
 export class LambdaDetails {
     name: string;
