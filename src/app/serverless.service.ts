@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { items, ServerlessComponent, Lambda, LambdaDetails } from './items';
+import { ServerlessComponent, Lambda, LambdaDetails } from './models';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -14,12 +14,12 @@ export class ServerlessService {
     return this.http.get<ServerlessComponent[]>('assets/items.json');
   }
 
-  AddLambdaToItem(item: ServerlessComponent){
-    const lambda = new Lambda();
-    const lambdaDetails = new LambdaDetails();
-    lambdaDetails.name = '${blahblah}';
-    lambda.functionObject3 = lambdaDetails;
+  // AddLambdaToItem(item: ServerlessComponent){
+  //   const lambda = new Lambda();
+  //   const lambdaDetails = new LambdaDetails();
+  //   lambdaDetails.name = '${blahblah}';
+  //   lambda.functionObject3 = lambdaDetails;
 
-    item.lambdas.push(lambda);
-  }
+  //   item.lambdas.push(lambda);
+  // }
 }

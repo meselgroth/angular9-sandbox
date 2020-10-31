@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Lambda, LambdaDetails, ServerlessComponent } from '../items';
+import { Lambda, LambdaDetails, ServerlessComponent } from '../models';
 import { ServerlessService } from '../serverless.service';
+import { Store } from '@ngxs/store';
+import { AddLambda } from "../root.actions";
 
 @Component({
   selector: 'app-item',
@@ -10,12 +12,12 @@ import { ServerlessService } from '../serverless.service';
 export class ItemComponent implements OnInit {
   @Input() item: ServerlessComponent;
 
-  constructor(private serverlessService: ServerlessService) {
+  constructor(private store: Store) {
   }
 
   ngOnInit(): void {
   }
-  AddLambda() {
-    this.serverlessService.AddLambdaToItem(this.item);
+  addLambda() {
+    this.store.dispatch(new AddLambda(this.item));
   }
 }

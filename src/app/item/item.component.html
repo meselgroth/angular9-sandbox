@@ -1,5 +1,5 @@
 <h2>{{item.name}}</h2>
-<button (click)="AddLambda()">Add lambda</button>
+<button (click)="addLambda()">Add lambda</button>
 <ul>
     <li *ngFor="let lambda of item.lambdas">{{lambda.ObjectName}} - "{{lambda.GetObject().name}}"</li>
 </ul>

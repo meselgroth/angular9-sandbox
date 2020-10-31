@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ServerlessService } from '../serverless.service';
-import { ServerlessComponent, Lambda } from '../items';
+import { ServerlessComponent, Lambda } from '../models';
+import { Store, Select } from '@ngxs/store';
+import { LoadYaml } from '../root.actions';
+import { RootState, RootModel } from '../root.state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-yaml-serverless-view',
@@ -9,26 +12,14 @@ import { ServerlessComponent, Lambda } from '../items';
 })
 export class YamlServerlessViewComponent implements OnInit {
 
-  Components: ServerlessComponent[];
+  @Select(rootState => rootState.YamlServerlessComponents) YamlServerlessComponents$: Observable<ServerlessComponent[]>;
+  @Select(RootState) rootState$: Observable<RootModel>;
 
-  constructor(private serverlessService: ServerlessService) {
+  constructor(private store: Store) {
   }
 
   ngOnInit(): void {
-    this.serverlessService.GetAll().subscribe(
-      (data: ServerlessComponent[]) => {
-        this.Components = data;
-
-        for (const component of this.Components) {
-          const enrichedLambdas: Lambda[] = [];
-
-          for (const lambda of component.lambdas) {
-            enrichedLambdas.push(new Lambda(lambda));
-          }
-          component.lambdas = enrichedLambdas;
-        }
-      }
-    );
+    this.store.dispatch(new LoadYaml());
   }
 
 }
