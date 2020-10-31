@@ -1,5 +1,7 @@
 # Angular9Sandbox
 
+Using Angular9 and Ngxs, build a UI to create, edit and load Serverless Lambdas.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
 
 ## Development server
